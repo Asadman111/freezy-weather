@@ -350,7 +350,7 @@ Unless otherwise specified, features in the following sources will only work for
 | 📆 **Daily forecast**          | Up to 9 days                                                                    |
 | ⏱️ **Hourly forecast**         | Up to 9 days                                                                    |
 | ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                |
-| 😶‍🌫️ **Air quality**         | Available: current observation of PM2.5                                         |
+| 😶‍🌫️ **Air quality**         | Available: current observation (see CNEMC below) of PM2.5                                         |
 | 🤧 **Pollen**                  | Not available                                                                   |
 | ☔ **Precipitation nowcasting** | Not available                                                                   |
 | ⚠️ **Alerts**                  | Available in Indonesian; Impact Based Forecast alerts also available in English |
@@ -410,7 +410,7 @@ Unless otherwise specified, features in the following sources will only work for
 | 📆 **Daily forecast**          | Up to 7 days                                                                                   |
 | ⏱️ **Hourly forecast**         | Up to 4 days                                                                                   |
 | ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                               |
-| 😶‍🌫️ **Air quality**         | Available: current observation from the [Ministry of Environment](https://airtw.moenv.gov.tw/) |
+| 😶‍🌫️ **Air quality**         | Available: current observation (see CNEMC below) from the [Ministry of Environment](https://airtw.moenv.gov.tw/) |
 | 🤧 **Pollen**                  | Not available                                                                                  |
 | ☔ **Precipitation nowcasting** | Not available                                                                                  |
 | ⚠️ **Alerts**                  | Partial coverage only: use [NCDR](#national-center-for-disaster-reduction) for full coverage   |
@@ -439,7 +439,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 📆 **Daily forecast**          | Up to 15 days                                                    |
 | ⏱️ **Hourly forecast**         | Up to 1 day                                                      |
 | ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
-| 😶‍🌫️ **Air quality**         | Available: current observation                                   |
+| 😶‍🌫️ **Air quality**         | Available: current observation (see CNEMC below)                                   |
 | 🤧 **Pollen**                  | Not available                                                    |
 | ☔ **Precipitation nowcasting** | Available                                                        |
 | ⚠️ **Alerts**                  | Available                                                        |
@@ -458,6 +458,15 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Wind                      | ✅         | Visibility        | ✅ (Current) |
 | Pressure                  | ❌         | Ceiling           | ❌           |
 </details>
+
+### China National Environmental Monitoring Centre
+**[中国环境监测总站 (CNEMC)](https://www.cnemc.cn/)** provides the official real-time China Air Quality Index (HJ 633-2012) for Chinese cities. Data is published hourly and can be selected as an **Air Quality** source for locations in China.
+
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇨🇳 China                                                       |
+| 😶‍🌫️ **Air quality**         | Available: current observation                                   |
+
 
 ### Danmarks Meteorologiske Institut
 **[Danmarks Meteorologiske Institut](https://www.dmi.dk/)** (DMI) is the official meteorological service of Denmark, the Faroe Islands, and Greenland.
@@ -1140,7 +1149,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 📆 **Daily forecast**          | Up to 7 days                                                     |
 | ⏱️ **Hourly forecast**         | Up to 2 days                                                     |
 | ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
-| 😶‍🌫️ **Air quality**         | Available: current observation                                   |
+| 😶‍🌫️ **Air quality**         | Available: current observation (see CNEMC below)                                   |
 | 🤧 **Pollen**                  | Not available                                                    |
 | ☔ **Precipitation nowcasting** | Not available                                                    |
 | ⚠️ **Alerts**                  | Available in English, Traditional Chinese, and Portuguese        |

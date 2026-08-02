@@ -892,7 +892,7 @@ class WeatherContentProvider : ContentProvider() {
             if (airQuality.isValid) {
                 BreezyAirQuality(
                     index = BreezyUnit(
-                        value = airQuality.getIndex()?.toDouble(),
+                        value = airQuality.getIndex(context!!)?.toDouble(),
                         unit = "aqi",
                         description = airQuality.getName(context!!),
                         color = colorToHex(airQuality.getColor(context!!))
@@ -900,7 +900,10 @@ class WeatherContentProvider : ContentProvider() {
                     pollutants = airQuality.validPollutants.associate {
                         it.id to BreezyPollutant(
                             index = BreezyUnit(
-                                value = airQuality.getIndex(it)?.toDouble(),
+                                value = airQuality.getIndex(
+                                    it,
+                                    SettingsManager.getInstance(context!!).airQualityIndexType
+                                )?.toDouble(),
                                 unit = "aqi",
                                 description = airQuality.getName(context!!, it),
                                 color = colorToHex(airQuality.getColor(context!!, it))

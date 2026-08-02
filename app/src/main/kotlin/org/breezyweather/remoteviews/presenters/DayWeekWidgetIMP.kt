@@ -423,10 +423,10 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 else -> null
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
-                if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
+                if (airQuality.getIndex(context) != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        airQuality.getIndex()!!.format(decimals = 0, locale = context.currentLocale),
+                        airQuality.getIndex(context)!!.format(decimals = 0, locale = context.currentLocale),
                         airQuality.getName(context)
                     )
                 } else {

@@ -88,6 +88,7 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.options.AirQualityIndexType
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
@@ -129,6 +130,7 @@ fun DetailsAirQuality(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val airQualityIndexType = SettingsManager.getInstance(context).airQualityIndexType
     val mappedValues = remember(hourlyList, selectedPollutant) {
         hourlyList
             .filter { hourly ->
@@ -178,8 +180,8 @@ fun DetailsAirQuality(
                                 AqiItem(
                                     pollutantIndex,
                                     airQuality.getColor(context, pollutantIndex),
-                                    airQuality.getIndex(pollutantIndex)!!.toFloat(),
-                                    PollutantIndex.indexExcessivePollution.toFloat(),
+                                    airQuality.getIndex(pollutantIndex, airQualityIndexType)!!.toFloat(),
+                                    PollutantIndex.getIndexExcessivePollution(airQualityIndexType).toFloat(),
                                     context.getString(pollutantIndex.shortName),
                                     PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                     context.getString(pollutantIndex.voicedName) +
@@ -198,8 +200,8 @@ fun DetailsAirQuality(
                                     AqiItem(
                                         pollutantIndex,
                                         airQuality.getColor(context, pollutantIndex),
-                                        airQuality.getIndex(pollutantIndex)!!.toFloat(),
-                                        PollutantIndex.indexExcessivePollution.toFloat(),
+                                        airQuality.getIndex(pollutantIndex, airQualityIndexType)!!.toFloat(),
+                                        PollutantIndex.getIndexExcessivePollution(airQualityIndexType).toFloat(),
                                         context.getString(pollutantIndex.shortName),
                                         PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                         context.getString(pollutantIndex.voicedName) +
@@ -381,6 +383,7 @@ private fun AirQualityItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val airQualityIndexType = SettingsManager.getInstance(context).airQualityIndexType
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
@@ -402,7 +405,7 @@ private fun AirQualityItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     if (selectedPollutant == null) {
-                        airQuality?.getIndex()?.let {
+                        airQuality?.getIndex(airQualityIndexType)?.let {
                             append(it.format(decimals = 0, locale = context.currentLocale))
                             append(" ")
                         }
@@ -445,13 +448,14 @@ private fun AirQualityChart(
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
+    val airQualityIndexType = SettingsManager.getInstance(context).airQualityIndexType
 
     val maxY = remember(mappedValues, selectedPollutant) {
         max(
-            selectedPollutant?.maxY ?: PollutantIndex.aqiThresholds[4],
+            selectedPollutant?.maxY ?: PollutantIndex.getChartMaxIndex(airQualityIndexType),
             mappedValues.values.maxOf {
                 if (selectedPollutant == null) {
-                    it.getIndex()!!
+                    it.getIndex(airQualityIndexType)!!
                 } else {
                     it.getConcentration(selectedPollutant)?.roundUpToNearestMultiplier(1.0)?.roundToInt() ?: 0
                 }
@@ -468,7 +472,7 @@ private fun AirQualityChart(
                     x = mappedValues.keys,
                     y = mappedValues.values.map {
                         if (selectedPollutant == null) {
-                            it.getIndex()!!
+                            it.getIndex(airQualityIndexType)!!
                         } else {
                             it.getConcentration(selectedPollutant)!!
                         }
@@ -499,21 +503,38 @@ private fun AirQualityChart(
             }
         },
         colors = remember(selectedPollutant) {
+            val thresholds = selectedPollutant?.let {
+                PollutantIndex.getLegendThresholds(it, airQualityIndexType)
+            } ?: PollutantIndex.getLevelThresholds(airQualityIndexType)
+            val colors = if (airQualityIndexType == AirQualityIndexType.CHINA) {
+                R.array.air_quality_china_level_colors
+            } else {
+                PollutantIndex.colorsArrayId
+            }
             persistentListOf(
-                ((selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).reversed().map { it.toFloat() }).zip(
-                    resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
+                thresholds.reversed().map { it.toFloat() }.zip(
+                    resources.getIntArray(colors).reversed().map { Color(it) }
                 ).toMap().toImmutableMap()
             )
         },
         trendHorizontalLines = persistentMapOf(
-            (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
-                resources.getStringArray(R.array.air_quality_levels)[3]
+            (
+                selectedPollutant?.let { PollutantIndex.getLegendThresholds(it, airQualityIndexType)[3] }
+                    ?: PollutantIndex.getLevelThresholds(airQualityIndexType)[3]
+                ).toDouble() to
+                resources.getStringArray(
+                    if (airQualityIndexType == AirQualityIndexType.CHINA) {
+                        R.array.air_quality_china_levels
+                    } else {
+                        R.array.air_quality_levels
+                    }
+                )[3]
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }
                 ?.let {
                     if (selectedPollutant == null) {
-                        it.getIndex()!!
+                        it.getIndex(airQualityIndexType)!!
                     } else {
                         it.getConcentration(selectedPollutant)!!.roundToInt()
                     }.format(
@@ -523,8 +544,11 @@ private fun AirQualityChart(
                 } ?: "-"
         },
         endAxisItemPlacer = remember(selectedPollutant) {
+            val thresholds = selectedPollutant?.let {
+                PollutantIndex.getLegendThresholds(it, airQualityIndexType)
+            } ?: PollutantIndex.getLevelThresholds(airQualityIndexType)
             SpecificVerticalAxisItemPlacer(
-                (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
+                thresholds
                     .map { it.toDouble() }
                     .toMutableList()
                     .apply {
@@ -727,6 +751,7 @@ fun AirQualityScale(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val airQualityIndexType = SettingsManager.getInstance(context).airQualityIndexType
 
     Material3ExpressiveCardListItem(
         modifier = modifier,
@@ -769,13 +794,16 @@ fun AirQualityScale(
                     modifier = Modifier.weight(1.5f)
                 )
             }
-            (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).forEachIndexed { index, startingValue ->
+            val thresholds = selectedPollutant?.let {
+                PollutantIndex.getLegendThresholds(it, airQualityIndexType)
+            } ?: PollutantIndex.getLevelThresholds(airQualityIndexType)
+            thresholds.forEachIndexed { index, startingValue ->
                 val aqi = if (selectedPollutant == null) {
                     startingValue
                 } else {
-                    selectedPollutant.getIndex(startingValue.toDouble())
+                    selectedPollutant.getIndex(startingValue.toDouble(), airQualityIndexType)
                 }
-                val endingValue = (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
+                val endingValue = thresholds
                     .getOrElse(index + 1) { null }
                     ?.let { " – ${(it - 1).format(decimals = 0, locale = context.currentLocale)}" }
                     ?: "+"
@@ -796,14 +824,14 @@ fun AirQualityScale(
                                 .size(dimensionResource(R.dimen.material_icon_size)),
                             painter = painterResource(R.drawable.ic_circle),
                             contentDescription = null,
-                            tint = Color(PollutantIndex.getAqiToColor(context, aqi))
+                            tint = Color(PollutantIndex.getAqiToColor(context, aqi, airQualityIndexType))
                         )
                         Text(
-                            text = PollutantIndex.getAqiToName(context, aqi)!!
+                            text = PollutantIndex.getAqiToName(context, aqi, airQualityIndexType)!!
                         )
                     }
                     Text(
-                        text = PollutantIndex.getAqiToHarmlessExposure(context, aqi)!!,
+                        text = PollutantIndex.getAqiToHarmlessExposure(context, aqi, airQualityIndexType)!!,
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(

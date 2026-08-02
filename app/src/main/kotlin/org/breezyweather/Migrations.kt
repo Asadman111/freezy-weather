@@ -292,6 +292,22 @@ object Migrations {
                 }
             }
 
+            if (oldVersion < 60203) {
+                runBlocking {
+                    // V6.2.3 moves the China air quality to the dedicated CNEMC source
+                    locationRepository.getAllLocations(withParameters = false)
+                        .forEach {
+                            if (it.airQualitySource == "china") {
+                                locationRepository.update(
+                                    it.copy(
+                                        airQualitySource = "cnemc"
+                                    )
+                                )
+                            }
+                        }
+                }
+            }
+
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
 
             // Always set up background tasks to ensure they're running

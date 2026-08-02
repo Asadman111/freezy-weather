@@ -182,6 +182,32 @@
     <string name="air_quality_level_6">Dangerous</string>
     <string name="air_quality_level_6_description">Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 minute</string>
+    <!-- China air quality levels (HJ 633-2012) -->
+    <string name="air_quality_china_level_1">Excellent</string>
+    <string name="air_quality_china_level_1_description">Air quality is considered satisfactory, and air pollution poses little or no risk.</string>
+    <string name="air_quality_china_level_1_harmless_exposure">&gt; 1 year</string>
+    <string name="air_quality_china_level_2">Good</string>
+    <string name="air_quality_china_level_2_description">Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</string>
+    <string name="air_quality_china_level_2_harmless_exposure">&lt; 1 year</string>
+    <string name="air_quality_china_level_3">Lightly polluted</string>
+    <string name="air_quality_china_level_3_description">Children, seniors and individuals with respiratory or heart conditions should reduce sustained, high-intensity outdoor exercises.</string>
+    <string name="air_quality_china_level_3_harmless_exposure">&lt; 1 month</string>
+    <string name="air_quality_china_level_4">Moderately polluted</string>
+    <string name="air_quality_china_level_4_description">Children, seniors and individuals with respiratory or heart conditions should avoid sustained, high-intensity outdoor exercises; the general population should moderately reduce outdoor exercise.</string>
+    <string name="air_quality_china_level_4_harmless_exposure">&lt; 1 week</string>
+    <string name="air_quality_china_level_5">Heavily polluted</string>
+    <string name="air_quality_china_level_5_description">Children, seniors and individuals with heart or lung diseases should stay indoors and avoid outdoor exercise; the general population should reduce outdoor exercise.</string>
+    <string name="air_quality_china_level_5_harmless_exposure">&lt; 1 day</string>
+    <string name="air_quality_china_level_6">Severely polluted</string>
+    <string name="air_quality_china_level_6_description">Children, seniors and individuals with heart or lung diseases should stay indoors and avoid outdoor exercise; the general population should avoid outdoor exercise.</string>
+    <string name="air_quality_china_level_6_harmless_exposure">&lt; 1 hour</string>
+
+    <!-- Air quality index standard -->
+    <string name="air_quality_index_type">Air quality index standard</string>
+    <string name="air_quality_index_type_summary">Standard used to compute and interpret the air quality index.</string>
+    <string name="air_quality_index_type_international">International (Plume)</string>
+    <string name="air_quality_index_type_china">China (HJ 633)</string>
+
     <string name="air_quality_average" translatable="false">@string/chart_average</string>
     <string name="air_quality_pollutant_primary">Primary pollutant</string>
     <string name="air_quality_pollutant_details">Pollutant details</string>

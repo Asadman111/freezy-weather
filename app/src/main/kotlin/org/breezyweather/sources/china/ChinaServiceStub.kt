@@ -49,7 +49,6 @@ abstract class ChinaServiceStub(context: Context) :
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.REVERSE_GEOCODING to name

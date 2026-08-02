@@ -22,6 +22,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.options.AirQualityIndexType
 import org.breezyweather.common.options.DarkMode
 import org.breezyweather.common.options.NotificationStyle
 import org.breezyweather.common.options.UpdateInterval
@@ -203,6 +204,15 @@ class SettingsManager private constructor(
             notifySettingsChanged()
         }
         get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_FORECAST_SOURCE
+
+    var airQualityIndexType: AirQualityIndexType
+        set(value) {
+            config.edit().putString("air_quality_index_type", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AirQualityIndexType.getInstance(
+            config.getString("air_quality_index_type", null)
+        )
 
     // unit.
     var temperatureUnit: TemperatureUnit?

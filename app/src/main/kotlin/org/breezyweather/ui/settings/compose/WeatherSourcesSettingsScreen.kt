@@ -38,6 +38,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.options.AirQualityIndexType
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
@@ -57,6 +58,7 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.clickablePreferenceItem
 import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
+import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
 import org.breezyweather.ui.settings.preference.composables.SectionHeader
@@ -175,6 +177,23 @@ fun WeatherSourcesSettingsScreen(
                     isLast = true
                 ) { defaultSource ->
                     SettingsManager.getInstance(context).defaultForecastSource = defaultSource
+                }
+            }
+            smallSeparatorItem()
+            listPreferenceItem(R.string.air_quality_index_type) { id ->
+                val airQualityIndexType = SettingsManager.getInstance(context).airQualityIndexType
+                ListPreferenceViewWithCard(
+                    title = context.getString(id),
+                    summary = { _, value ->
+                        AirQualityIndexType.getInstance(value).getName(context)
+                    },
+                    selectedKey = airQualityIndexType.id,
+                    valueArray = context.resources.getStringArray(R.array.air_quality_index_type_values),
+                    nameArray = context.resources.getStringArray(R.array.air_quality_index_type_names),
+                    isLast = true
+                ) { value ->
+                    SettingsManager.getInstance(context).airQualityIndexType =
+                        AirQualityIndexType.getInstance(value)
                 }
             }
             sectionFooterItem(R.string.settings_weather_sources_section_general)

@@ -34,6 +34,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -66,7 +67,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         val talkBackBuilder = StringBuilder()
         location.weather!!.validAirQuality?.let { airQuality ->
-            mAqiIndex = airQuality.getIndex() ?: 0
+            mAqiIndex = airQuality.getIndex(context) ?: 0
             mEnable = true
             if (itemAnimationEnabled) {
                 aqiProgress.apply {
@@ -87,7 +88,10 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 }
             }
             aqiProgress.apply {
-                max = PollutantIndex.indexExcessivePollution.toFloat()
+                max =
+                    PollutantIndex.getIndexExcessivePollution(
+                        SettingsManager.getInstance(context).airQualityIndexType
+                    ).toFloat()
             }
             aqiLevelView.text = airQuality.getName(context)
             talkBackBuilder

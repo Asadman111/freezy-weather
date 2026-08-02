@@ -44,6 +44,7 @@ CREATE TABLE weathers(
     no2 INTEGER AS PollutantConcentration,
     o3 INTEGER AS PollutantConcentration,
     co INTEGER AS PollutantConcentration,
+    aqi INTEGER,
 
     relative_humidity INTEGER AS Ratio,
     dew_point INTEGER AS Temperature,
@@ -62,13 +63,13 @@ CREATE TABLE weathers(
 CREATE INDEX weathers_location_formatted_id_index ON weathers(location_formatted_id);
 
 getWeatherByLocationId:
-SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
+SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, aqi, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
 FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
 
 insert:
-INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
-VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :normalsUpdateLatitude, :normalsUpdateLongitude, :weatherText, :weatherCode, :temperature, :temperatureSourceFeelsLike, :temperatureApparent, :temperatureWindChill, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
+INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, aqi, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
+VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :normalsUpdateLatitude, :normalsUpdateLongitude, :weatherText, :weatherCode, :temperature, :temperatureSourceFeelsLike, :temperatureApparent, :temperatureWindChill, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :aqi, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
 
 update:
 UPDATE weathers SET
@@ -100,6 +101,7 @@ UPDATE weathers SET
     no2 = coalesce(:no2, no2),
     o3 = coalesce(:o3, o3),
     co = coalesce(:co, co),
+    aqi = coalesce(:aqi, aqi),
     relative_humidity = coalesce(:relativeHumidity, relative_humidity),
     dew_point = coalesce(:dewPoint, dew_point),
     pressure = coalesce(:pressure, pressure),

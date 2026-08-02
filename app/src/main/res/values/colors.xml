@@ -45,6 +45,13 @@
     <color name="aqiLevel_4">#f62a55</color>
     <color name="aqiLevel_5">#c72eaa</color>
     <color name="aqiLevel_6">#9930ff</color>
+    <color name="chinaAqiLevel_1">#00e400</color>
+    <color name="chinaAqiLevel_2">#ffff00</color>
+    <color name="chinaAqiLevel_3">#ff7e00</color>
+    <color name="chinaAqiLevel_4">#ff0000</color>
+    <color name="chinaAqiLevel_5">#99004c</color>
+    <color name="chinaAqiLevel_6">#7e0023</color>
+
 
     <color name="pollenLevel_0">#bfbfbf</color>
     <color name="pollenLevel_1">#08c286</color>

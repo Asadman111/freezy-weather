@@ -27,7 +27,9 @@ import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.AirQualityIndexType
 import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -45,7 +47,8 @@ class DailyAirQualityAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private var mHighestIndex = PollutantIndex.aqiThresholds[4]
+    private val airQualityIndexType = SettingsManager.getInstance(activity).airQualityIndexType
+    private var mHighestIndex = PollutantIndex.getChartMaxIndex(airQualityIndexType)
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -64,7 +67,7 @@ class DailyAirQualityAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
 
-            val index = daily.airQuality?.getIndex()
+            val index = daily.airQuality?.getIndex(activity)
             if (index != null) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(index.format(decimals = 0, locale = activity.currentLocale))
@@ -108,7 +111,7 @@ class DailyAirQualityAdapter(
 
     init {
         location.weather!!.dailyForecast
-            .mapNotNull { it.airQuality?.getIndex() }
+            .mapNotNull { it.airQuality?.getIndex(activity) }
             .maxOrNull()
             ?.let {
                 if (it > mHighestIndex) {
@@ -129,34 +132,41 @@ class DailyAirQualityAdapter(
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return location.weather!!.dailyForecast.any { it.airQuality?.getIndex() != null }
+        return location.weather!!.dailyForecast.any { it.airQuality?.getIndex(activity) != null }
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_aqi)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
+        val airQualityLevels = activity.resources.getStringArray(
+            if (airQualityIndexType == AirQualityIndexType.CHINA) {
+                R.array.air_quality_china_levels
+            } else {
+                R.array.air_quality_levels
+            }
+        )
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                PollutantIndex.indexFreshAir.toFloat(),
-                PollutantIndex.indexFreshAir.toString(),
-                activity.resources.getStringArray(R.array.air_quality_levels)[1],
+                PollutantIndex.getIndexFreshAir(airQualityIndexType).toFloat(),
+                PollutantIndex.getIndexFreshAir(airQualityIndexType).toString(),
+                airQualityLevels[1],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                PollutantIndex.indexHighPollution.toFloat(),
-                PollutantIndex.indexHighPollution.toString(),
-                activity.resources.getStringArray(R.array.air_quality_levels)[3],
+                PollutantIndex.getIndexHighPollution(airQualityIndexType).toFloat(),
+                PollutantIndex.getIndexHighPollution(airQualityIndexType).toString(),
+                airQualityLevels[3],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                PollutantIndex.indexExcessivePollution.toFloat(),
-                PollutantIndex.indexExcessivePollution.toString(),
-                activity.resources.getStringArray(R.array.air_quality_levels)[5],
+                PollutantIndex.getIndexExcessivePollution(airQualityIndexType).toFloat(),
+                PollutantIndex.getIndexExcessivePollution(airQualityIndexType).toString(),
+                airQualityLevels[5],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )

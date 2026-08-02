@@ -189,10 +189,10 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         return when (subtitleData) {
             "time" -> weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
-                if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
+                if (airQuality.getIndex(context) != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        airQuality.getIndex()!!.format(decimals = 0, locale = context.currentLocale),
+                        airQuality.getIndex(context)!!.format(decimals = 0, locale = context.currentLocale),
                         airQuality.getName(context, null)
                     )
                 } else {

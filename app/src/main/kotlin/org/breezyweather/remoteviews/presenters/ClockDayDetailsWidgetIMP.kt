@@ -290,7 +290,9 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 context.getString(R.string.colon_separator) +
                 context.getString(
                     R.string.parenthesis,
-                    weather.current!!.airQuality!!.getIndex()!!.format(decimals = 0, locale = context.currentLocale),
+                    weather.current!!.airQuality!!.getIndex(
+                        context
+                    )!!.format(decimals = 0, locale = context.currentLocale),
                     weather.current!!.airQuality!!.getName(context)
                 )
         } else {

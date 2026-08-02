@@ -317,7 +317,9 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.current?.airQuality?.isIndexValid == true) {
                         context.getString(
                             R.string.parenthesis,
-                            weather.current!!.airQuality!!.getIndex()!!.format(decimals = 0, context.currentLocale),
+                            weather.current!!.airQuality!!.getIndex(
+                                context
+                            )!!.format(decimals = 0, context.currentLocale),
                             weather.current!!.airQuality!!.getName(context)
                         )
                     } else {
@@ -510,7 +512,7 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
                         context.getString(
                             R.string.parenthesis,
-                            weather.dailyForecastStartingToday[i].airQuality!!.getIndex()!!.format(
+                            weather.dailyForecastStartingToday[i].airQuality!!.getIndex(context)!!.format(
                                 decimals = 0,
                                 locale = context.currentLocale
                             ),

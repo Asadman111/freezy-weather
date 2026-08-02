@@ -438,6 +438,51 @@
         <item>@color/aqiLevel_6</item>
     </integer-array>
 
+    <!-- china air quality levels (HJ 633-2012) -->
+    <string-array name="air_quality_china_levels">
+        <item>@string/air_quality_china_level_1</item>
+        <item>@string/air_quality_china_level_2</item>
+        <item>@string/air_quality_china_level_3</item>
+        <item>@string/air_quality_china_level_4</item>
+        <item>@string/air_quality_china_level_5</item>
+        <item>@string/air_quality_china_level_6</item>
+    </string-array>
+    <string-array name="air_quality_china_level_descriptions">
+        <item>@string/air_quality_china_level_1_description</item>
+        <item>@string/air_quality_china_level_2_description</item>
+        <item>@string/air_quality_china_level_3_description</item>
+        <item>@string/air_quality_china_level_4_description</item>
+        <item>@string/air_quality_china_level_5_description</item>
+        <item>@string/air_quality_china_level_6_description</item>
+    </string-array>
+    <string-array name="air_quality_china_level_harmless_exposures">
+        <item>@string/air_quality_china_level_1_harmless_exposure</item>
+        <item>@string/air_quality_china_level_2_harmless_exposure</item>
+        <item>@string/air_quality_china_level_3_harmless_exposure</item>
+        <item>@string/air_quality_china_level_4_harmless_exposure</item>
+        <item>@string/air_quality_china_level_5_harmless_exposure</item>
+        <item>@string/air_quality_china_level_6_harmless_exposure</item>
+    </string-array>
+    <integer-array name="air_quality_china_level_colors">
+        <item>@color/chinaAqiLevel_1</item>
+        <item>@color/chinaAqiLevel_2</item>
+        <item>@color/chinaAqiLevel_3</item>
+        <item>@color/chinaAqiLevel_4</item>
+        <item>@color/chinaAqiLevel_5</item>
+        <item>@color/chinaAqiLevel_6</item>
+    </integer-array>
+
+    <!-- air quality index standards -->
+    <string-array name="air_quality_index_type_values">
+        <item>international</item>
+        <item>china</item>
+    </string-array>
+    <string-array name="air_quality_index_type_names">
+        <item>@string/air_quality_index_type_international</item>
+        <item>@string/air_quality_index_type_china</item>
+    </string-array>
+
+
     <!-- pollen levels -->
     <string-array name="pollen_levels">
         <item>@string/pollen_level_1</item>

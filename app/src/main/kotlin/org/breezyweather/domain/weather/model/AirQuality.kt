@@ -19,6 +19,8 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.AirQuality
+import org.breezyweather.common.options.AirQualityIndexType
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.index.PollutantIndex
 
 val AirQuality.validPollutants: List<PollutantIndex>
@@ -33,17 +35,35 @@ val AirQuality.validPollutants: List<PollutantIndex>
         ).filter { getConcentration(it) != null }
     }
 
-fun AirQuality.getIndex(pollutant: PollutantIndex? = null): Int? {
+fun AirQuality.getIndex(pollutant: PollutantIndex? = null): Int? =
+    getIndex(pollutant, AirQualityIndexType.INTERNATIONAL)
+
+fun AirQuality.getIndex(type: AirQualityIndexType): Int? =
+    getIndex(null, type)
+
+fun AirQuality.getIndex(context: Context): Int? =
+    getIndex(null, SettingsManager.getInstance(context).airQualityIndexType)
+
+fun AirQuality.getIndex(
+    pollutant: PollutantIndex? = null,
+    type: AirQualityIndexType,
+): Int? {
     return if (pollutant == null) { // Air Quality
-        val pollutantsAqi: List<Int> = listOfNotNull(
-            getIndex(PollutantIndex.O3),
-            getIndex(PollutantIndex.NO2),
-            getIndex(PollutantIndex.PM10),
-            getIndex(PollutantIndex.PM25)
-        )
-        if (pollutantsAqi.isNotEmpty()) pollutantsAqi.max() else null
+        // Use the source-authoritative AQI (e.g. the official CNEMC China AQI) when it is provided
+        // and the China standard is selected, otherwise compute it from concentrations
+        if (type == AirQualityIndexType.CHINA && aqi != null) {
+            aqi
+        } else {
+            val pollutantsAqi: List<Int> = listOfNotNull(
+                getIndex(PollutantIndex.O3, type),
+                getIndex(PollutantIndex.NO2, type),
+                getIndex(PollutantIndex.PM10, type),
+                getIndex(PollutantIndex.PM25, type)
+            )
+            if (pollutantsAqi.isNotEmpty()) pollutantsAqi.max() else null
+        }
     } else { // Specific pollutant
-        pollutant.getIndex(getConcentration(pollutant))
+        pollutant.getIndex(getConcentration(pollutant), type)
     }
 }
 
@@ -57,26 +77,29 @@ fun AirQuality.getConcentration(pollutant: PollutantIndex) = when (pollutant) {
 }
 
 fun AirQuality.getName(context: Context, pollutant: PollutantIndex? = null): String? {
+    val type = SettingsManager.getInstance(context).airQualityIndexType
     return if (pollutant == null) { // Air Quality
-        PollutantIndex.getAqiToName(context, getIndex())
+        PollutantIndex.getAqiToName(context, getIndex(null, type), type)
     } else { // Specific pollutant
-        pollutant.getName(context, getConcentration(pollutant))
+        pollutant.getName(context, getConcentration(pollutant), type)
     }
 }
 
 fun AirQuality.getDescription(context: Context, pollutant: PollutantIndex? = null): String? {
+    val type = SettingsManager.getInstance(context).airQualityIndexType
     return if (pollutant == null) { // Air Quality
-        PollutantIndex.getAqiToDescription(context, getIndex())
+        PollutantIndex.getAqiToDescription(context, getIndex(null, type), type)
     } else { // Specific pollutant
-        pollutant.getDescription(context, getConcentration(pollutant))
+        pollutant.getDescription(context, getConcentration(pollutant), type)
     }
 }
 
 @ColorInt
 fun AirQuality.getColor(context: Context, pollutant: PollutantIndex? = null): Int {
+    val type = SettingsManager.getInstance(context).airQualityIndexType
     return if (pollutant == null) {
-        PollutantIndex.getAqiToColor(context, getIndex())
+        PollutantIndex.getAqiToColor(context, getIndex(null, type), type)
     } else { // Specific pollutant
-        pollutant.getColor(context, getConcentration(pollutant))
+        pollutant.getColor(context, getConcentration(pollutant), type)
     }
 }

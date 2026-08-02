@@ -33,13 +33,20 @@ data class AirQuality(
     val nO2: PollutantConcentration? = null,
     val o3: PollutantConcentration? = null,
     val cO: PollutantConcentration? = null,
+    /**
+     * Raw air quality index as provided by the source (e.g. the official China AQI from CNEMC).
+     * When present, this authoritative value should be used instead of recomputing the index from
+     * concentrations, which is especially important for the China (HJ 633-2012) standard because it
+     * relies on O3 8-hour averages that are not available from all sources.
+     */
+    val aqi: Int? = null,
 ) : Serializable {
 
     val isValid: Boolean
-        get() = pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null || cO != null
+        get() = pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null || cO != null || aqi != null
 
     val isIndexValid: Boolean
-        get() = pM25 != null || pM10 != null || nO2 != null || o3 != null
+        get() = pM25 != null || pM10 != null || nO2 != null || o3 != null || aqi != null
 
     fun toValid(): AirQuality {
         return copy(

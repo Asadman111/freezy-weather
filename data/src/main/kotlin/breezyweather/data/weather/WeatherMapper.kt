@@ -83,6 +83,7 @@ object WeatherMapper {
         no2: PollutantConcentration?,
         o3: PollutantConcentration?,
         co: PollutantConcentration?,
+        aqi: Long?,
         relativeHumidity: Ratio?,
         dewPoint: Temperature?,
         pressure: Pressure?,
@@ -126,7 +127,8 @@ object WeatherMapper {
                 so2,
                 no2,
                 o3,
-                co
+                co,
+                aqi?.toInt()
             ),
             relativeHumidity,
             dewPoint,
@@ -208,6 +210,7 @@ object WeatherMapper {
         no2: PollutantConcentration?,
         o3: PollutantConcentration?,
         co: PollutantConcentration?,
+        aqi: Long?,
         alder: PollenConcentration?,
         ash: PollenConcentration?,
         birch: PollenConcentration?,
@@ -335,7 +338,8 @@ object WeatherMapper {
             so2,
             no2,
             o3,
-            co
+            co,
+            aqi?.toInt()
         ),
         Pollen(
             alder = alder,
@@ -418,6 +422,7 @@ object WeatherMapper {
         no2: PollutantConcentration?,
         o3: PollutantConcentration?,
         co: PollutantConcentration?,
+        aqi: Long?,
         uvIndex: Double?,
         relativeHumidity: Ratio?,
         dewPoint: Temperature?,
@@ -461,7 +466,8 @@ object WeatherMapper {
             so2,
             no2,
             o3,
-            co
+            co,
+            aqi?.toInt()
         ),
         UV(uvIndex),
         relativeHumidity,

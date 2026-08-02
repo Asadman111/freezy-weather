@@ -161,6 +161,7 @@ class WeatherRepository(
                 no2 = weather.current?.airQuality?.nO2,
                 o3 = weather.current?.airQuality?.o3,
                 co = weather.current?.airQuality?.cO,
+                aqi = weather.current?.airQuality?.aqi?.toLong(),
 
                 relativeHumidity = weather.current?.relativeHumidity,
                 dewPoint = weather.current?.dewPoint,
@@ -270,6 +271,7 @@ class WeatherRepository(
                     no2 = daily.airQuality?.nO2,
                     o3 = daily.airQuality?.o3,
                     co = daily.airQuality?.cO,
+                    aqi = daily.airQuality?.aqi?.toLong(),
 
                     // pollen
                     alder = daily.pollen?.alder,
@@ -360,6 +362,7 @@ class WeatherRepository(
                     no2 = hourly.airQuality?.nO2,
                     o3 = hourly.airQuality?.o3,
                     co = hourly.airQuality?.cO,
+                    aqi = hourly.airQuality?.aqi?.toLong(),
 
                     // uv.
                     uvIndex = hourly.uV?.index,
