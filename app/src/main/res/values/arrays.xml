@@ -25,6 +25,34 @@
         <item>day_night</item>
         <item>dark</item>
     </string-array>
+    <!-- app font family. -->
+    <string-array name="app_font_families">
+        <item>@string/settings_appearance_font_family_system</item>
+        <item>@string/settings_appearance_font_family_serif</item>
+        <item>@string/settings_appearance_font_family_monospace</item>
+        <item>@string/settings_appearance_font_family_cursive</item>
+    </string-array>
+    <string-array name="app_font_family_values">
+        <item>system</item>
+        <item>serif</item>
+        <item>monospace</item>
+        <item>cursive</item>
+    </string-array>
+
+    <!-- app font size. -->
+    <string-array name="app_font_sizes">
+        <item>@string/settings_appearance_font_size_small</item>
+        <item>@string/settings_appearance_font_size_default</item>
+        <item>@string/settings_appearance_font_size_large</item>
+        <item>@string/settings_appearance_font_size_extra_large</item>
+    </string-array>
+    <string-array name="app_font_size_values">
+        <item>small</item>
+        <item>default</item>
+        <item>large</item>
+        <item>extra_large</item>
+    </string-array>
+
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">

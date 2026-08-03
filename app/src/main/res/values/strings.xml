@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- App -->
-    <string name="app_name">Weather</string>
+    <string name="app_name">Freezy Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
     <string name="forecast">Forecast</string>
     <string name="daily_forecast">Daily forecast</string>
@@ -797,7 +797,7 @@
     <string name="settings_source_geonames_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_polleninfo_api_key" translatable="false">@string/settings_source_api_key</string>"
     <string name="settings_appearance">Appearance</string>
-    <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
+    <string name="settings_appearance_summary">Language, dark mode, font, icon pack, units</string>
     <string name="settings_appearance_section_regional">Language and region</string>
     <string name="settings_appearance_section_theme">Theme</string>
     <string name="settings_appearance_language_title">Language</string>
@@ -810,6 +810,18 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>
     <string name="settings_appearance_dark_mode_locations_dark">Always dark when app is in dark mode</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
+    <string name="settings_appearance_section_font">Font</string>
+    <string name="settings_appearance_font_family_title">Font family</string>
+    <string name="settings_appearance_font_size_title">Font size</string>
+    <string name="settings_appearance_font_family_system">System default</string>
+    <string name="settings_appearance_font_family_serif">Serif</string>
+    <string name="settings_appearance_font_family_monospace">Monospace</string>
+    <string name="settings_appearance_font_family_cursive">Cursive</string>
+    <string name="settings_appearance_font_size_small">Small</string>
+    <string name="settings_appearance_font_size_default">Default</string>
+    <string name="settings_appearance_font_size_large">Large</string>
+    <string name="settings_appearance_font_size_extra_large">Extra large</string>
+
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Weather icon</string>

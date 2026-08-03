@@ -27,6 +27,8 @@ import org.breezyweather.common.options.DarkMode
 import org.breezyweather.common.options.NotificationStyle
 import org.breezyweather.common.options.UpdateInterval
 import org.breezyweather.common.options.WidgetWeekIconMode
+import org.breezyweather.common.options.appearance.AppFontFamily
+import org.breezyweather.common.options.appearance.AppFontSize
 import org.breezyweather.common.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.options.appearance.CardDisplay
 import org.breezyweather.common.options.appearance.DailyTrendDisplay
@@ -284,6 +286,30 @@ class SettingsManager private constructor(
             notifySettingsChanged()
         }
         get() = config.getString("iconProvider", BreezyWeather.instance.packageName) ?: ""
+
+    var appFontFamily: AppFontFamily
+        set(value) {
+            config
+                .edit()
+                .putString("app_font_family", value.id)
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = AppFontFamily.getInstance(
+            config.getString("app_font_family", null) ?: AppFontFamily.SYSTEM.id
+        )
+
+    var appFontSize: AppFontSize
+        set(value) {
+            config
+                .edit()
+                .putString("app_font_size", value.id)
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = AppFontSize.getInstance(
+            config.getString("app_font_size", null) ?: AppFontSize.DEFAULT.id
+        )
 
     var cardDisplayList: List<CardDisplay>
         set(value) {

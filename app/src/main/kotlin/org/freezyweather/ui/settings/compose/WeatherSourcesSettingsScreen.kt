@@ -174,7 +174,7 @@ fun WeatherSourcesSettingsScreen(
                     }.toImmutableList(),
                     card = true,
                     isFirst = true,
-                    isLast = true
+                    isLast = false
                 ) { defaultSource ->
                     SettingsManager.getInstance(context).defaultForecastSource = defaultSource
                 }

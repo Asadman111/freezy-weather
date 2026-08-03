@@ -25,7 +25,17 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.Observer
+import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.options.appearance.AppFontFamily
+import org.breezyweather.domain.settings.SettingsChangedMessage
+import org.breezyweather.domain.settings.SettingsManager
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -46,9 +56,26 @@ fun BreezyWeatherTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
+    val context = LocalContext.current
+
+    // React to app font settings changes so the typography updates immediately.
+    val settingsManager = remember { SettingsManager.getInstance(context) }
+    var fontFamilyId by remember {
+        mutableStateOf(settingsManager.appFontFamily.id)
+    }
+    DisposableEffect(Unit) {
+        val observer = Observer<SettingsChangedMessage> {
+            fontFamilyId = settingsManager.appFontFamily.id
+        }
+        EventBus.instance.with(SettingsChangedMessage::class.java).observeForever(observer)
+        onDispose {
+            EventBus.instance.with(SettingsChangedMessage::class.java).removeObserver(observer)
+        }
+    }
+
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
+            // LocalContext.current is already read at the top of the function
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
@@ -57,7 +84,10 @@ fun BreezyWeatherTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = getTypography(
+            fontFamily = AppFontFamily.getInstance(fontFamilyId).fontFamily
+            // Font size is applied globally through the configuration font scale
+        ),
         content = content
     )
 }

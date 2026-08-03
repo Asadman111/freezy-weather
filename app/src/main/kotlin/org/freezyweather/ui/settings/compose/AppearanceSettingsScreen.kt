@@ -61,6 +61,8 @@ import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.options.DarkMode
 import org.breezyweather.common.options.DarkModeLocation
+import org.breezyweather.common.options.appearance.AppFontFamily
+import org.breezyweather.common.options.appearance.AppFontSize
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -91,6 +93,8 @@ fun AppearanceSettingsScreen(
     onNavigateTo: (route: String) -> Unit,
     onNavigateBack: () -> Unit,
     darkMode: DarkMode,
+    fontFamily: AppFontFamily,
+    fontSize: AppFontSize,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -135,6 +139,48 @@ fun AppearanceSettingsScreen(
                 }
             }
             sectionFooterItem(R.string.settings_appearance_section_regional)
+
+            sectionHeaderItem(R.string.settings_appearance_section_font)
+            listPreferenceItem(R.string.settings_appearance_font_family_title) { id ->
+                val valueArray = stringArrayResource(R.array.app_font_family_values)
+                val nameArray = stringArrayResource(R.array.app_font_families)
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }
+                            .let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
+                    selectedKey = fontFamily.id,
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    isFirst = true,
+                    withState = false,
+                    onValueChanged = {
+                        SettingsManager.getInstance(context).appFontFamily = AppFontFamily.getInstance(it)
+                    }
+                )
+            }
+            smallSeparatorItem()
+            listPreferenceItem(R.string.settings_appearance_font_size_title) { id ->
+                val valueArray = stringArrayResource(R.array.app_font_size_values)
+                val nameArray = stringArrayResource(R.array.app_font_sizes)
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }
+                            .let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
+                    selectedKey = fontSize.id,
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    isLast = true,
+                    withState = false,
+                    onValueChanged = {
+                        SettingsManager.getInstance(context).appFontSize = AppFontSize.getInstance(it)
+                    }
+                )
+            }
+            sectionFooterItem(R.string.settings_appearance_section_font)
 
             largeSeparatorItem()
 

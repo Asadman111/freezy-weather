@@ -98,6 +98,12 @@ class SettingsActivity : BreezyActivity() {
     private val tomorrowForecastEnabledState = mutableStateOf(
         SettingsManager.getInstance(this).isTomorrowForecastEnabled
     )
+    private val fontFamilyState = mutableStateOf(
+        SettingsManager.getInstance(this).appFontFamily
+    )
+    private val fontSizeState = mutableStateOf(
+        SettingsManager.getInstance(this).appFontSize
+    )
 
     private var requestPostNotificationPermissionSucceedCallback: (() -> Unit)? = null
 
@@ -149,6 +155,16 @@ class SettingsActivity : BreezyActivity() {
             val tomorrowForecastEnabled = SettingsManager.getInstance(this).isTomorrowForecastEnabled
             if (tomorrowForecastEnabledState.value != tomorrowForecastEnabled) {
                 tomorrowForecastEnabledState.value = tomorrowForecastEnabled
+            }
+
+            val fontFamily = SettingsManager.getInstance(this).appFontFamily
+            if (fontFamilyState.value != fontFamily) {
+                fontFamilyState.value = fontFamily
+            }
+
+            val fontSize = SettingsManager.getInstance(this).appFontSize
+            if (fontSizeState.value != fontSize) {
+                fontSizeState.value = fontSize
             }
         }
     }
@@ -227,7 +243,9 @@ class SettingsActivity : BreezyActivity() {
                     context = this@SettingsActivity,
                     onNavigateTo = { navController.navigate(it) },
                     onNavigateBack = { onBack() },
-                    darkMode = remember { darkModeState }.value
+                    darkMode = remember { darkModeState }.value,
+                    fontFamily = remember { fontFamilyState }.value,
+                    fontSize = remember { fontSizeState }.value
                 )
             }
             composable(SettingsScreenRouter.Unit.route) {

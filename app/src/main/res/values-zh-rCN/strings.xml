@@ -338,7 +338,7 @@
     <string name="message_network_unavailable">网络不可用</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 密钥</string>
     <string name="settings_background_updates_summary">刷新频率，故障排除</string>
-    <string name="settings_appearance_summary">语言、暗色模式、图标包、计量单位</string>
+    <string name="settings_appearance_summary">语言、暗色模式、字体、图标包、计量单位</string>
     <string name="settings_units_summary">温度、降水、距离、速度、压强</string>
     <string name="settings_main">主界面</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">无法打开设备设置。</string>
@@ -822,6 +822,18 @@
     <string name="wind_origin">来自%s</string>
     <string name="settings_appearance_section_regional">语言和区域</string>
     <string name="settings_appearance_section_theme">主题</string>
+    <string name="settings_appearance_section_font">字体</string>
+    <string name="settings_appearance_font_family_title">字体</string>
+    <string name="settings_appearance_font_size_title">字号</string>
+    <string name="settings_appearance_font_family_system">系统默认</string>
+    <string name="settings_appearance_font_family_serif">衬线体</string>
+    <string name="settings_appearance_font_family_monospace">等宽字体</string>
+    <string name="settings_appearance_font_family_cursive">手写体</string>
+    <string name="settings_appearance_font_size_small">小</string>
+    <string name="settings_appearance_font_size_default">默认</string>
+    <string name="settings_appearance_font_size_large">大</string>
+    <string name="settings_appearance_font_size_extra_large">特大</string>
+
     <string name="action_configure_item">配置 %s</string>
     <string name="about_update_check_eol">这个 Android 版本不再受支持</string>
     <string name="air_quality_short">空气质量</string>

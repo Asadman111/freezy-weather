@@ -16,9 +16,12 @@
 
 package org.breezyweather.common.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
@@ -26,11 +29,37 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
+import org.breezyweather.R
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.setSystemBarStyle
+import org.breezyweather.common.options.appearance.AppFontFamily
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.domain.settings.SettingsManager
 
 abstract class BreezyActivity : AppCompatActivity() {
+
+    private var fontConfigKey: String? = null
+
+    override fun attachBaseContext(newBase: Context) {
+        val settingsManager = SettingsManager.getInstance(BreezyWeather.instance)
+        val overlayStyleId = when (settingsManager.appFontFamily) {
+            AppFontFamily.SERIF -> R.style.FontFamilyOverlay_Serif
+            AppFontFamily.MONOSPACE -> R.style.FontFamilyOverlay_Monospace
+            AppFontFamily.CURSIVE -> R.style.FontFamilyOverlay_Cursive
+            AppFontFamily.SYSTEM -> null
+        }
+        val themedBase = if (overlayStyleId == null) {
+            newBase
+        } else {
+            ContextThemeWrapper(newBase, overlayStyleId)
+        }
+
+        // Apply the app font size multiplier on top of the system font scale.
+        val configuration = Configuration(themedBase.resources.configuration)
+        configuration.fontScale = themedBase.resources.configuration.fontScale * settingsManager.appFontSize.scale
+
+        super.attachBaseContext(themedBase.createConfigurationContext(configuration))
+    }
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +82,18 @@ abstract class BreezyActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         BreezyWeather.instance.setTopActivity(this)
+
+        // Recreate the activity if the app font settings changed while it was paused,
+        // so the new font family/font size is applied to the View-based UI.
+        val currentFontConfigKey = SettingsManager.getInstance(this).let {
+            it.appFontFamily.id + ":" + it.appFontSize.id
+        }
+        if (fontConfigKey != null && fontConfigKey != currentFontConfigKey) {
+            fontConfigKey = currentFontConfigKey
+            recreate()
+        } else {
+            fontConfigKey = currentFontConfigKey
+        }
     }
 
     @CallSuper
