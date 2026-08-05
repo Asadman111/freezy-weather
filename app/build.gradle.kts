@@ -1,15 +1,15 @@
 @file:Suppress("ChromeOsAbiSupport")
 
-import breezy.buildlogic.Config
-import breezy.buildlogic.getCommitCount
-import breezy.buildlogic.getGitSha
-import breezy.buildlogic.registerLocalesConfigTask
 import com.android.build.api.dsl.ApplicationExtension
+import freezy.buildlogic.Config
+import freezy.buildlogic.getCommitCount
+import freezy.buildlogic.getGitSha
+import freezy.buildlogic.registerLocalesConfigTask
 import java.util.Properties
 
 plugins {
-    id("breezy.android.application")
-    id("breezy.android.application.compose")
+    id("freezy.android.application")
+    id("freezy.android.application.compose")
     id("com.android.application")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
@@ -20,16 +20,16 @@ plugins {
 val supportedAbi = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
 
 configure<ApplicationExtension> {
-    namespace = "org.breezyweather"
+    namespace = "org.freezyweather"
 
     defaultConfig {
-        applicationId = "org.breezyweather"
-        versionCode = 60202
-        versionName = "6.2.2"
+        applicationId = "org.freezyweather"
+        versionCode = 10000
+        versionName = "1.0.0"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
-        buildConfigField("boolean", "IS_BREEZY", "${Config.isBreezy}")
+        buildConfigField("boolean", "IS_FREEZY", "${Config.isFreezy}")
 
         multiDexEnabled = true
         ndk {
@@ -76,11 +76,11 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "REPORT_ISSUE",
-            if (Config.isBreezy) {
-                globalProperties.getProperty("breezy.report_issue")?.let { prop -> "\"$prop\"" }
+            if (Config.isFreezy) {
+                globalProperties.getProperty("freezy.report_issue")?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.warn(
-                            "Missing breezy.report_issue property! Some sources may not work without it. Please set this property in gradle.properties to a link or an email where issues can be reported."
+                            "Missing freezy.report_issue property! Some sources may not work without it. Please set this property in gradle.properties to a link or an email where issues can be reported."
                         )
                         "\"\""
                     }
@@ -97,12 +97,12 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "SOURCE_CODE_LINK",
-            if (Config.isBreezy) {
-                globalProperties.getProperty("breezy.source_code_link")?.takeIf { it.startsWith("https://") }
+            if (Config.isFreezy) {
+                globalProperties.getProperty("freezy.source_code_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.error(
-                            "Missing breezy.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
+                            "Missing freezy.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
                         )
                         "\"\""
                     }
@@ -120,8 +120,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "RELEASES_LINK",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.releases_link") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.releases_link") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.releases_link") ?: ""}\""
             }
@@ -129,12 +129,12 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "INSTALL_INSTRUCTIONS_LINK",
-            if (Config.isBreezy) {
-                globalProperties.getProperty("breezy.install_instructions_link")?.takeIf { it.startsWith("https://") }
+            if (Config.isFreezy) {
+                globalProperties.getProperty("freezy.install_instructions_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.warn(
-                            "Missing breezy.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
+                            "Missing freezy.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
                         )
                         "\"\""
                     }
@@ -152,8 +152,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "ICON_PACKS_LINK",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.icon_packs_link") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.icon_packs_link") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.icon_packs_link") ?: ""}\""
             }
@@ -161,12 +161,12 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "PRIVACY_POLICY_LINK",
-            if (Config.isBreezy) {
-                globalProperties.getProperty("breezy.privacy_policy_link")?.takeIf { it.startsWith("https://") }
+            if (Config.isFreezy) {
+                globalProperties.getProperty("freezy.privacy_policy_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.error(
-                            "Missing breezy.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
+                            "Missing freezy.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
                         )
                         "\"\""
                     }
@@ -184,8 +184,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "CONTACT_MATRIX",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.matrix_link") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.matrix_link") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.matrix_link") ?: ""}\""
             }
@@ -193,8 +193,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "GITHUB_ORG",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.github.org") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.github.org") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.github.org") ?: ""}\""
             }
@@ -202,8 +202,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "GITHUB_REPO",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.github.repo") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.github.repo") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.github.repo") ?: ""}\""
             }
@@ -211,8 +211,8 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "GITHUB_RELEASE_PREFIX",
-            if (Config.isBreezy) {
-                "\"${globalProperties.getProperty("breezy.github.release_prefix") ?: ""}\""
+            if (Config.isFreezy) {
+                "\"${globalProperties.getProperty("freezy.github.release_prefix") ?: ""}\""
             } else {
                 "\"${globalProperties.getProperty("app.github.release_prefix") ?: ""}\""
             }
@@ -220,122 +220,122 @@ configure<ApplicationExtension> {
         it.buildConfigField(
             "String",
             "DEFAULT_LOCATION_SOURCE",
-            "\"${localProperties.getProperty("breezy.source.default_location") ?: "native"}\""
+            "\"${localProperties.getProperty("freezy.source.default_location") ?: "native"}\""
         )
         it.buildConfigField(
             "String",
             "DEFAULT_LOCATION_SEARCH_SOURCE",
-            "\"${localProperties.getProperty("breezy.source.default_location_search") ?: "openmeteo"}\""
+            "\"${localProperties.getProperty("freezy.source.default_location_search") ?: "openmeteo"}\""
         )
         it.buildConfigField(
             "String",
             "DEFAULT_GEOCODING_SOURCE",
-            "\"${localProperties.getProperty("breezy.source.default_geocoding") ?: "naturalearth"}\""
+            "\"${localProperties.getProperty("freezy.source.default_geocoding") ?: "naturalearth"}\""
         )
         it.buildConfigField(
             "String",
             "DEFAULT_FORECAST_SOURCE",
-            "\"${localProperties.getProperty("breezy.source.default_weather") ?: "auto"}\""
+            "\"${localProperties.getProperty("freezy.source.default_weather") ?: "auto"}\""
         )
         it.buildConfigField(
             "String",
             "ACCU_WEATHER_KEY",
-            "\"${localProperties.getProperty("breezy.accu.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.accu.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "AEMET_KEY",
-            "\"${localProperties.getProperty("breezy.aemet.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.aemet.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ATMO_AURA_KEY",
-            "\"${localProperties.getProperty("breezy.atmoaura.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.atmoaura.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ATMO_FRANCE_KEY",
-            "\"${localProperties.getProperty("breezy.atmofrance.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.atmofrance.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ATMO_GRAND_EST_KEY",
-            "\"${localProperties.getProperty("breezy.atmograndest.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.atmograndest.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ATMO_HDF_KEY",
-            "\"${localProperties.getProperty("breezy.atmohdf.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.atmohdf.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ATMO_SUD_KEY",
-            "\"${localProperties.getProperty("breezy.atmosud.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.atmosud.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "BAIDU_IP_LOCATION_AK",
-            "\"${localProperties.getProperty("breezy.baiduip.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.baiduip.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "BMKG_KEY",
-            "\"${localProperties.getProperty("breezy.bmkg.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.bmkg.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "CWA_KEY",
-            "\"${localProperties.getProperty("breezy.cwa.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.cwa.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "ECCC_KEY",
-            "\"${localProperties.getProperty("breezy.eccc.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.eccc.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "GEO_NAMES_KEY",
-            "\"${localProperties.getProperty("breezy.geonames.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.geonames.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "MET_IE_KEY",
-            "\"${localProperties.getProperty("breezy.metie.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.metie.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "MET_OFFICE_KEY",
-            "\"${localProperties.getProperty("breezy.metoffice.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.metoffice.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "MF_WSFT_JWT_KEY",
-            "\"${localProperties.getProperty("breezy.mf.jwtKey") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.mf.jwtKey") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "MF_WSFT_KEY",
-            "\"${localProperties.getProperty("breezy.mf.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.mf.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "OPEN_WEATHER_KEY",
-            "\"${localProperties.getProperty("breezy.openweather.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.openweather.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "PIRATE_WEATHER_KEY",
-            "\"${localProperties.getProperty("breezy.pirateweather.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.pirateweather.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "POLLENINFO_KEY",
-            "\"${localProperties.getProperty("breezy.polleninfo.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.polleninfo.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
             "INFOPLAZA_KEY",
-            "\"${localProperties.getProperty("breezy.infoplaza.key") ?: ""}\""
+            "\"${localProperties.getProperty("freezy.infoplaza.key") ?: ""}\""
         )
     }
 
@@ -355,8 +355,8 @@ configure<ApplicationExtension> {
         getByName("basic") {
             kotlin.directories += "src/src_nonfreenet"
             res.directories += "src/res_nonfreenet"
-            if (Config.isBreezy) {
-                res.directories += "src/res_breezy"
+            if (Config.isFreezy) {
+                res.directories += "src/res_freezy"
             } else {
                 res.directories += "src/res_fork"
             }
@@ -364,8 +364,8 @@ configure<ApplicationExtension> {
         getByName("freenet") {
             kotlin.directories += "src/src_freenet"
             res.directories += "src/res_freenet"
-            if (Config.isBreezy) {
-                res.directories += "src/res_breezy"
+            if (Config.isFreezy) {
+                res.directories += "src/res_freezy"
             } else {
                 res.directories += "src/res_fork"
             }
@@ -438,7 +438,7 @@ aboutLibraries {
         // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
         // Warning: Please do not use the parent folder of a module as path, as this can result in issues. More details: https://github.com/mikepenz/AboutLibraries/issues/936
         // The path provided is relative to the modules path (not project root)
-        configPath = if (Config.isBreezy) {
+        configPath = if (Config.isFreezy) {
             file("../config")
         } else {
             file("../config-fork") // TODO: Find a way to avoid duplicating files
@@ -457,7 +457,7 @@ dependencies {
     implementation(projects.mapsUtils)
     implementation(projects.uiWeatherView)
     implementation(projects.weatherUnit)
-    implementation(libs.breezy.datasharing.lib)
+    implementation(libs.freezy.datasharing.lib)
 
     implementation(libs.kotlinx.collections.immutable)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Időjárás</string>
+    <string name="app_name">Freezy Weather</string>
     <!-- keyword. -->
     <string name="location_current">Jelenlegi hely</string>
     <string name="daily_today_short">Ma</string>
@@ -767,8 +767,8 @@
     <string name="common_weather_text_mostly_cloudy">Többnyire felhős</string>
     <string name="visibility_scale">Látótávolság-skála</string>
     <string name="cloud_cover_scale">Felhőborítottsági skála</string>
-    <string name="content_provider_permission_label">Breezy Weather adatainak elolvasása</string>
-    <string name="content_provider_permission_description">időjárási információkat kaphat a Breezy Weather alkalmazásból, beleértve a helyek koordinátáit, például a jelenlegi helyéhez tartozót, ha azt hozzáadta</string>
+    <string name="content_provider_permission_label">Freezy Weather adatainak elolvasása</string>
+    <string name="content_provider_permission_description">időjárási információkat kaphat a Freezy Weather alkalmazásból, beleértve a helyek koordinátáit, például a jelenlegi helyéhez tartozót, ha azt hozzáadta</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Frissítési értesítő a helyhez: %s</string>
     <string name="action_add_as_location">Hozzáadás helyként</string>
     <string name="settings_regional_preference">Régióbeállítás</string>

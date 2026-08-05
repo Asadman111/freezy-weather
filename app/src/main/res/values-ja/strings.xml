@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">天気</string>
+    <string name="app_name">Freezy Weather</string>
     <!-- keyword. -->
     <string name="location_current">現在地</string>
     <string name="daily_today_short">今日</string>
@@ -810,7 +810,7 @@
     <string name="settings_appearance_dark_mode_custom">%1$sから%2$sまでダークモードに設定</string>
     <string name="settings_appearance_dark_mode_locations_day_night">時間に応じてカラーモードを変更</string>
     <string name="settings_appearance_dark_mode_locations_dark">アプリがダークモードの場合は常にダークに設定</string>
-    <string name="content_provider_permission_label">Breezy Weatherのデータを読み込む</string>
-    <string name="content_provider_permission_description">Breezy Weatherの天気情報を入手。ここには現在地などの座標が含まれます</string>
+    <string name="content_provider_permission_label">Freezy Weatherのデータを読み込む</string>
+    <string name="content_provider_permission_description">Freezy Weatherの天気情報を入手。ここには現在地などの座標が含まれます</string>
     <string name="pressure_standard">通常</string>
 </resources>

@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.breezyweather.ui.common.widgets.SwipeSwitchLayout
+            <org.freezyweather.ui.common.widgets.SwipeSwitchLayout
                 android:id="@+id/switch_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                     android:layout_height="match_parent"
                     android:clipChildren="false">
 
-                    <org.breezyweather.ui.main.widgets.FitTabletRecyclerView
+                    <org.freezyweather.ui.main.widgets.FitTabletRecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -74,16 +74,16 @@
                     android:paddingHorizontal="@dimen/normal_margin"
                     android:visibility="gone" />
 
-            </org.breezyweather.ui.common.widgets.SwipeSwitchLayout>
+            </org.freezyweather.ui.common.widgets.SwipeSwitchLayout>
 
-            <org.breezyweather.ui.common.widgets.InkPageIndicator
+            <org.freezyweather.ui.common.widgets.InkPageIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/normal_margin"
                 android:alpha="0"
                 android:layout_gravity="bottom|center_horizontal"
-                app:layout_behavior="org.breezyweather.ui.common.behaviors.FloatingAboveSnackbarBehavior"
+                app:layout_behavior="org.freezyweather.ui.common.behaviors.FloatingAboveSnackbarBehavior"
                 app:dotDiameter="8dp"
                 app:dotGap="8dp"
                 app:animationDuration="300" />

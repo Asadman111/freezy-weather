@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Погода</string>
+    <string name="app_name">Freezy Weather</string>
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
     <string name="daily_today_short">Сегодня</string>
@@ -771,8 +771,8 @@
     <string name="cloud_cover_scale">Шкала облачности</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s Оповеститель обновления местоположений</string>
     <string name="action_add_as_location">Добавить как местоположение</string>
-    <string name="content_provider_permission_label">Читать данные Breezy Weather</string>
-    <string name="content_provider_permission_description">получите информацию о погоде от Breezy Weather, включая координаты ваших местоположений, такие как ваше текущее местоположение, если вы его добавили</string>
+    <string name="content_provider_permission_label">Читать данные Freezy Weather</string>
+    <string name="content_provider_permission_description">получите информацию о погоде от Freezy Weather, включая координаты ваших местоположений, такие как ваше текущее местоположение, если вы его добавили</string>
     <string name="common_weather_text_mostly_cloudy">Преимущественно облачно</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">ОПАСНО</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Известно, что анимации обоев могут приводить, в том числе, к: большому расходу аккумулятора; его перегреву; высокому потреблению памяти; ухудшению отзывчивости системы; сбоям Android.</string>

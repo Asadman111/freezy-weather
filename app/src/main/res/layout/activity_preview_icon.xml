@@ -11,22 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.breezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout
+        <org.freezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/activity_preview_icon_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/BreezyWeatherTheme.AppBarTheme"
+            style="@style/FreezyWeatherTheme.AppBarTheme"
             app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_preview_icon_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/BreezyWeatherTheme.ToolbarTheme"
+                style="@style/FreezyWeatherTheme.ToolbarTheme"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/action_back" />
 
-        </org.breezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout>
+        </org.freezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_preview_icon_recyclerView"

@@ -1,0 +1,107 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package org.freezyweather.ui.main.adapters.main.holder
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
+import freezyweather.domain.location.model.Location
+import org.freezyweather.R
+import org.freezyweather.common.activities.FreezyActivity
+import org.freezyweather.common.extensions.formatMeasure
+import org.freezyweather.common.options.appearance.DetailScreen
+import org.freezyweather.common.utils.UnitUtils
+import org.freezyweather.common.utils.helpers.IntentHelper
+import org.freezyweather.domain.weather.model.getContentDescription
+import org.freezyweather.domain.weather.model.getDirection
+import org.freezyweather.ui.theme.resource.providers.ResourceProvider
+import org.freezyweather.unit.formatting.UnitWidth
+
+class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_wind, parent, false)
+) {
+    private val windDirectionView: ImageView = itemView.findViewById(R.id.wind_direction)
+    private val windSpeedValueView: TextView = itemView.findViewById(R.id.wind_speed_value)
+    private val windDetailView: TextView = itemView.findViewById(R.id.visibility_description)
+
+    override fun onBindView(
+        activity: FreezyActivity,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+    ) {
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        val talkBackBuilder = StringBuilder(context.getString(R.string.wind))
+
+        location.weather?.current?.wind?.let { wind ->
+            talkBackBuilder.append(context.getString(R.string.colon_separator))
+            talkBackBuilder.append(wind.getContentDescription(context))
+
+            wind.speed?.let { speed ->
+                windSpeedValueView.text = UnitUtils.formatUnitsHalfSize(
+                    speed.formatMeasure(context, valueWidth = UnitWidth.NARROW)
+                )
+            }
+
+            wind.degree?.let { degree ->
+                if (degree != -1.0) {
+                    windDirectionView.visibility = View.VISIBLE
+                    windDirectionView.setImageDrawable(
+                        AppCompatResources.getDrawable(context, R.drawable.wind_arrow)
+                    )
+                    windDirectionView.rotation = degree.toFloat()
+                } else {
+                    windDirectionView.visibility = View.VISIBLE
+                    windDirectionView.setImageDrawable(
+                        AppCompatResources.getDrawable(context, R.drawable.wind_variable)
+                    )
+                }
+            } ?: run {
+                windDirectionView.visibility = View.GONE
+            }
+
+            windDetailView.text = if (wind.speed != null && wind.gusts != null && wind.gusts!! > wind.speed!!) {
+                context.getString(R.string.wind_gusts_short) +
+                    context.getString(R.string.colon_separator) +
+                    wind.gusts!!.formatMeasure(context, valueWidth = UnitWidth.NARROW)
+            } else {
+                wind.getDirection(context, short = true)?.let {
+                    if (wind.degree!! in 0.0..360.0) {
+                        context.getString(R.string.wind_origin, it)
+                    } else {
+                        it
+                    }
+                } ?: ""
+            }
+        }
+
+        itemView.contentDescription = talkBackBuilder.toString()
+        itemView.setOnClickListener {
+            IntentHelper.startDailyWeatherActivity(
+                context as FreezyActivity,
+                location.formattedId,
+                location.weather!!.todayIndex,
+                DetailScreen.TAG_WIND
+            )
+        }
+    }
+}

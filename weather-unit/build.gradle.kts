@@ -1,11 +1,11 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
-    id("breezy.library")
+    id("freezy.library")
 }
 
 configure<LibraryExtension> {
-    namespace = "org.breezyweather.unit"
+    namespace = "org.freezyweather.unit"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

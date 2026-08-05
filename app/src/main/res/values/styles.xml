@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- app theme -->
-    <style name="BreezyWeatherTheme" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+    <style name="FreezyWeatherTheme" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -56,22 +56,22 @@
         <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
 
-    <style name="BreezyWeatherTheme.Main" parent="Theme.SplashScreen">
+    <style name="FreezyWeatherTheme.Main" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/colorSplashScreen</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/BreezyWeatherTheme</item>
+        <item name="postSplashScreenTheme">@style/FreezyWeatherTheme</item>
     </style>
 
-    <style name="BreezyWeatherTheme.Search" parent="BreezyWeatherTheme">
+    <style name="FreezyWeatherTheme.Search" parent="FreezyWeatherTheme">
         <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <style name="BreezyWeatherTheme.AppBarTheme">
+    <style name="FreezyWeatherTheme.AppBarTheme">
         <item name="android:background">?attr/colorSurface</item>
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="BreezyWeatherTheme.ToolbarTheme">
+    <style name="FreezyWeatherTheme.ToolbarTheme">
         <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
         <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
 
@@ -102,7 +102,7 @@
         <item name="android:foreground">@drawable/selectable_item_background</item>
     </style>
 
-    <style name="BreezyWeather.Widget.Background" parent="@android:style/Widget">
+    <style name="FreezyWeather.Widget.Background" parent="@android:style/Widget">
         <item name="android:background">@drawable/widget_m3_background</item>
         <item name="android:padding">16dp</item>
     </style>

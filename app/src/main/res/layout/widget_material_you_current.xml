@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_material_you_current"
-    android:theme="@style/BreezyWeatherAndroidSWidget"
+    android:theme="@style/FreezyWeatherAndroidSWidget"
     android:background="@drawable/widget_m3_current_background"
     android:padding="0dp"
     android:layout_width="@dimen/widget_material_you_default_size"
     android:layout_height="@dimen/widget_material_you_default_size"
     android:layout_margin="0dp"
-    style="@style/BreezyWeather.Widget.Background">
+    style="@style/FreezyWeather.Widget.Background">
 
     <TextView
         android:id="@+id/widget_material_you_current_currentTemperature"

@@ -1,11 +1,11 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
-    id("breezy.library")
+    id("freezy.library")
 }
 
 configure<LibraryExtension> {
-    namespace = "org.breezyweather.ui.theme.weatherView"
+    namespace = "org.freezyweather.ui.theme.weatherView"
 
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")

@@ -2,11 +2,11 @@
 aboutlib = "15.0.4"
 accompanist = "0.37.3"
 activity = "1.13.0"
-adaptiveiconview = "0.0.3"
+adaptiveiconview = "v0.0.3"
 agp = "9.3.1"
 appcompat = "1.7.1"
 annotationJvm = "1.10.0"
-breezy-datasharing-lib = "09c0e4dd062601239c3f6062266d4b963577cefc"
+freezy-datasharing-lib = "v1.0.0"
 cardview = "1.0.0"
 compose-bom = "2026.06.01"
 compose-material3 = "1.5.0-alpha25"
@@ -57,11 +57,11 @@ aboutLibraries-gradle = { group = "com.mikepenz.aboutlibraries.plugin", name = "
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
-adaptiveiconview = { group = "com.github.breezy-weather", name = "AdaptiveIconView", version.ref = "adaptiveiconview" }
+adaptiveiconview = { group = "com.github.Asadman111", name = "AdaptiveIconView", version.ref = "adaptiveiconview" }
 android-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotationJvm" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-breezy-datasharing-lib = { group = "com.github.breezy-weather", name = "breezy-weather-data-sharing-lib", version.ref = "breezy-datasharing-lib" }
+freezy-datasharing-lib = { group = "com.github.Asadman111", name = "freezy-weather-data-sharing-lib", version.ref = "freezy-datasharing-lib" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 compose-animation = { group = "androidx.compose.animation", name = "animation" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -115,7 +115,7 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 okhttp-tls = { group = "com.squareup.okhttp3", name = "okhttp-tls", version.ref = "okhttp" }
 preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference-ktx" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-restrictionBypass = { group = "com.github.breezy-weather", name = "RestrictionBypass", version.ref = "restrictionBypass" }
+restrictionBypass = { group = "com.github.Asadman111", name = "RestrictionBypass", version.ref = "restrictionBypass" }
 retrofit-adapter-rxjava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
 retrofit-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -150,3 +150,5 @@ retrofit = ["retrofit-adapter-rxjava3", "retrofit-converter-kotlinx-serializatio
 sqldelight = ["sqldelight-android-driver", "sqldelight-coroutines", "sqldelight-android-paging"]
 sqlite = ["sqlite-framework", "sqlite-ktx", "sqlite-android"]
 test = ["junit", "kotest-assertions", "kotlinx-coroutines-test", "mockk"]
+
+

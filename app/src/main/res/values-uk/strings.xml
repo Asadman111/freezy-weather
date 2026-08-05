@@ -100,7 +100,7 @@
     <string name="widget_clock_day_horizontal">Годинник та щоденний (горизонтальний)</string>
     <string name="widget_text">Текст</string>
     <string name="widget_multi_city">Декілька міст</string>
-    <string name="app_name">Погода</string>
+    <string name="app_name">Freezy Weather</string>
     <string name="daily_forecast">Щоденний прогноз</string>
     <string name="hourly_forecast">Щогодинний прогноз</string>
     <string name="precipitation_nowcasting">Поточні опади</string>
@@ -761,8 +761,8 @@
     <string name="common_weather_text_mostly_cloudy">Переважно хмарно</string>
     <string name="visibility_scale">Шкала видимості</string>
     <string name="cloud_cover_scale">Шкала хмарності</string>
-    <string name="content_provider_permission_label">Читати дані Breezy Weather</string>
-    <string name="content_provider_permission_description">отримувати інформацію про погоду від Breezy Weather, включаючи координати ваших місць розташування, наприклад, ваше поточне місцезнаходження, якщо ви його додали</string>
+    <string name="content_provider_permission_label">Читати дані Freezy Weather</string>
+    <string name="content_provider_permission_description">отримувати інформацію про погоду від Freezy Weather, включаючи координати ваших місць розташування, наприклад, ваше поточне місцезнаходження, якщо ви його додали</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s Сповіщувач оновлень місцезнаходження</string>
     <string name="action_add_as_location">Додати як місцезнаходження</string>
     <string name="settings_regional_preference">Регіональні уподобання</string>

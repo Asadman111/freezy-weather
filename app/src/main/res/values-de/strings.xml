@@ -8,7 +8,7 @@
     <string name="action_settings">Einstellungen</string>
     <string name="air_quality">Luftqualität</string>
     <string name="pollen">Pollen</string>
-    <string name="app_name">Wetter</string>
+    <string name="app_name">Freezy Weather</string>
     <string name="temperature_apparent">Gefühlt</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
@@ -774,8 +774,8 @@
     <string name="common_weather_text_mostly_cloudy">Stark bewölkt</string>
     <string name="visibility_scale">Sichtbarkeitsskala</string>
     <string name="cloud_cover_scale">Wolkenbedeckungsskala</string>
-    <string name="content_provider_permission_description">Wetterinformationen von Breezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
-    <string name="content_provider_permission_label">Breezy Weather Daten lesen</string>
+    <string name="content_provider_permission_description">Wetterinformationen von Freezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
+    <string name="content_provider_permission_label">Freezy Weather Daten lesen</string>
     <string name="action_add_as_location">Als Ort hinzufügen</string>
     <string name="settings_regional_preference">Regionale Präferenz</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s Benachrichtigung über Ortsaktualisierung</string>

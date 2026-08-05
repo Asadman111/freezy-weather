@@ -1,7 +1,7 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
-    id("breezy.library")
+    id("freezy.library")
 }
 
 configure<LibraryExtension> {

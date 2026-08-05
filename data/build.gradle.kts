@@ -1,13 +1,13 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
-    id("breezy.library")
+    id("freezy.library")
     kotlin("plugin.serialization")
     id("app.cash.sqldelight")
 }
 
 configure<LibraryExtension> {
-    namespace = "breezyweather.data"
+    namespace = "freezyweather.data"
 
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")
@@ -16,7 +16,7 @@ configure<LibraryExtension> {
     sqldelight {
         databases {
             create("Database") {
-                packageName.set("breezyweather.data")
+                packageName.set("freezyweather.data")
                 dialect(libs.sqldelight.dialects.sql)
                 schemaOutputDirectory.set(project.file("./src/main/sqldelight"))
             }

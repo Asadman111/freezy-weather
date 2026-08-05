@@ -1,4 +1,4 @@
-Breezy Weather on funktsioonirohke tasuta avatud lähtekoodiga Material 3 Expressive ilmateaterakendus hästi läbimõeldud visualiseeringute ja ennustuste, reaalajas ilmaolude, lähiaja prognooside, õhukvaliteedi- ja saaste ning hoiatuste toega 50+ ilmateateallikast, näiteks NWS, Met Office UK, Met Éireann, ECCC ja Open-Meteo.
+Freezy Weather on funktsioonirohke tasuta avatud lähtekoodiga Material 3 Expressive ilmateaterakendus hästi läbimõeldud visualiseeringute ja ennustuste, reaalajas ilmaolude, lähiaja prognooside, õhukvaliteedi- ja saaste ning hoiatuste toega 50+ ilmateateallikast, näiteks NWS, Met Office UK, Met Éireann, ECCC ja Open-Meteo.
 
 <b>Funktsioonid</b>
 

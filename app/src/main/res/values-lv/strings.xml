@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Laikapstākļi</string>
+    <string name="app_name">Freezy Weather</string>
     <string name="daily_forecast">Dienu prognoze</string>
     <string name="hourly_forecast">Ik stundu</string>
     <string name="air_quality">Gaisa kvalitāte</string>
@@ -763,8 +763,8 @@
     <string name="common_weather_text_mostly_cloudy">Pārsvarā mākoņains</string>
     <string name="visibility_scale">Redzamības skala</string>
     <string name="cloud_cover_scale">Mākoņainuma skala</string>
-    <string name="content_provider_permission_label">Lasīt Breezy Weather datus</string>
-    <string name="content_provider_permission_description">iegūt laikapstākļu informāciju no Breezy Weather, tajā skaitā Tavu atrašanās vietu koordinātas, piemēram, pašreizējo atrašanās vietu, ja tā ir pievienota</string>
+    <string name="content_provider_permission_label">Lasīt Freezy Weather datus</string>
+    <string name="content_provider_permission_description">iegūt laikapstākļu informāciju no Freezy Weather, tajā skaitā Tavu atrašanās vietu koordinātas, piemēram, pašreizējo atrašanās vietu, ja tā ir pievienota</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s atrašanās vietas atjauninājumu paziņotājs</string>
     <string name="action_add_as_location">Pievienot kā atrašanās vietu</string>
     <string name="settings_regional_preference">Apgabala iestatījums</string>

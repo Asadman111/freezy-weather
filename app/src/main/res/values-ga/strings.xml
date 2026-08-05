@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aimsir</string>
+    <string name="app_name">Freezy Weather</string>
     <string name="daily_forecast">Réamhaisnéis laethúil</string>
     <string name="hourly_forecast">Réamhaisnéis in aghaidh na huaire</string>
     <string name="current_weather">An aimsir reatha</string>
@@ -764,7 +764,7 @@
     <string name="message_incompatible_times_content">Athraigh do réamhaisnéis nó foinse cáilíochta aeir ionas go mbeidh na hamanna ag teacht leis.</string>
     <string name="settings_regional_preference">Rogha réigiúnach</string>
     <string name="content_provider_permission_label">Léigh sonraí Aimsire Breezy</string>
-    <string name="content_provider_permission_description">faigh faisnéis aimsire ó Breezy Weather, lena n-áirítear comhordanáidí do shuíomhanna, amhail do shuíomh reatha má chuir tú leis é</string>
+    <string name="content_provider_permission_description">faigh faisnéis aimsire ó Freezy Weather, lena n-áirítear comhordanáidí do shuíomhanna, amhail do shuíomh reatha má chuir tú leis é</string>
     <string name="common_weather_text_mostly_cloudy">Scamallach den chuid is mó</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">CONTÚIRTEACH</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Is eol go mbíonn na nithe seo a leanas mar thoradh ar bheochana páipéar balla: tomhaltas ard ceallraí; róthéamh ceallraí; tomhaltas ard cuimhne; freagrúlacht chórais lagaithe; tuairteáil chórais Android.</string>

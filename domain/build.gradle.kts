@@ -1,12 +1,12 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
-    id("breezy.library")
+    id("freezy.library")
     kotlin("plugin.serialization")
 }
 
 configure<LibraryExtension> {
-    namespace = "breezyweather.domain"
+    namespace = "freezyweather.domain"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

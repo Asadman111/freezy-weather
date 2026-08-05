@@ -29,7 +29,7 @@ dependencyResolutionManagement {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "BreezyWeather"
+rootProject.name = "FreezyWeather"
 include(":app")
 include(":data")
 include(":domain")
@@ -38,9 +38,9 @@ include(":ui-weather-view")
 include(":weather-unit")
 
 // To test local changes
-/*includeBuild("../breezy-weather-data-sharing-lib/") {
+/*includeBuild("../freezy-weather-data-sharing-lib/") {
     dependencySubstitution {
-        substitute(module("com.github.breezy-weather:breezy-weather-data-sharing-lib"))
+            substitute(module("com.github.Asadman111:freezy-weather-data-sharing-lib"))
             .using(project(":lib"))
     }
 }*/
