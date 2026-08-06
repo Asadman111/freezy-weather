@@ -160,9 +160,9 @@ class FreezyWeather : Application(), Configuration.Provider {
             BuildConfig.GITHUB_RELEASE_PREFIX.isNotEmpty() &&
             (
                 (
-                    !BuildConfig.GITHUB_ORG.contains("freezy", ignoreCase = true) &&
-                        !BuildConfig.GITHUB_RELEASE_PREFIX.contains("freezy", ignoreCase = true) &&
-                        !BuildConfig.GITHUB_REPO.contains("freezy", ignoreCase = true)
+                    !BuildConfig.GITHUB_ORG.contains("breezy", ignoreCase = true) &&
+                        !BuildConfig.GITHUB_RELEASE_PREFIX.contains("breezy", ignoreCase = true) &&
+                        !BuildConfig.GITHUB_REPO.contains("breezy", ignoreCase = true)
                     ) ||
                     isSignedByFreezy ||
                     debugMode
@@ -184,8 +184,8 @@ class FreezyWeather : Application(), Configuration.Provider {
     val isImpersonatingFreezyWeather: Boolean
         get() {
             return (
-                getString(R.string.brand_name).contains("freezy", ignoreCase = true) ||
-                    BuildConfig.APPLICATION_ID.contains("freezy", ignoreCase = true)
+                getString(R.string.brand_name).contains("breezy", ignoreCase = true) ||
+                    BuildConfig.APPLICATION_ID.contains("breezy", ignoreCase = true)
                 ) &&
                 !isSignedByFreezy &&
                 !debugMode
@@ -196,7 +196,7 @@ class FreezyWeather : Application(), Configuration.Provider {
      */
     val userAgent: String
         get() {
-            return if (!getString(R.string.brand_name).contains("freezy", ignoreCase = true) ||
+            return if (!getString(R.string.brand_name).contains("breezy", ignoreCase = true) ||
                 isSignedByFreezy ||
                 debugMode
             ) {

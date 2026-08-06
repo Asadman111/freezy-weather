@@ -1,3 +1,4 @@
+rootProject.name = "freezy-weather"
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
