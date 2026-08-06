@@ -75,6 +75,7 @@ import org.freezyweather.sources.climweb.MsdZwService
 import org.freezyweather.sources.climweb.SmaScService
 import org.freezyweather.sources.climweb.SmaSuService
 import org.freezyweather.sources.climweb.SsmsService
+import org.freezyweather.sources.cnemc.CnemcService
 import org.freezyweather.sources.cwa.CwaService
 import org.freezyweather.sources.debug.DebugService
 import org.freezyweather.sources.dmi.DmiService
@@ -144,6 +145,7 @@ class SourceManager @Inject constructor(
     breezyUpdateNotifierService: FreezyUpdateNotifierService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
+    cnemcService: CnemcService,
     cwaService: CwaService,
     dccmsService: DccmsService,
     debugService: DebugService,
@@ -253,6 +255,7 @@ class SourceManager @Inject constructor(
         bmkgService,
         brightSkyService,
         chinaService,
+        cnemcService,
         cwaService,
         dccmsService,
         dmiService,

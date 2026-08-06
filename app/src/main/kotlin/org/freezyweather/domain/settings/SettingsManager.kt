@@ -30,6 +30,7 @@ import org.freezyweather.common.options.appearance.BackgroundAnimationMode
 import org.freezyweather.common.options.appearance.CardDisplay
 import org.freezyweather.common.options.appearance.DailyTrendDisplay
 import org.freezyweather.common.options.appearance.HourlyTrendDisplay
+import org.freezyweather.domain.weather.index.AirQualityStandard
 import org.freezyweather.unit.distance.DistanceUnit
 import org.freezyweather.unit.precipitation.PrecipitationUnit
 import org.freezyweather.unit.pressure.PressureUnit
@@ -474,6 +475,15 @@ class SettingsManager private constructor(
             notifySettingsChanged()
         }
         get() = config.getBoolean("use_measure_format", true)
+
+    var airQualityStandard: AirQualityStandard
+        set(value) {
+            config.edit().putString("air_quality_standard", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AirQualityStandard.getInstance(
+            config.getString("air_quality_standard", null) ?: "plume"
+        )
 
     private fun notifySettingsChanged() {
         EventBus

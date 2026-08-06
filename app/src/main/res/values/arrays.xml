@@ -454,6 +454,50 @@
         <item>@color/pollenLevel_5</item>
     </integer-array>
 
+    <!-- China air quality levels (HJ 633-2012) -->
+    <string-array name="china_air_quality_levels">
+        <item>@string/china_air_quality_level_1</item>
+        <item>@string/china_air_quality_level_2</item>
+        <item>@string/china_air_quality_level_3</item>
+        <item>@string/china_air_quality_level_4</item>
+        <item>@string/china_air_quality_level_5</item>
+        <item>@string/china_air_quality_level_6</item>
+    </string-array>
+    <string-array name="china_air_quality_level_descriptions">
+        <item>@string/china_air_quality_level_1_description</item>
+        <item>@string/china_air_quality_level_2_description</item>
+        <item>@string/china_air_quality_level_3_description</item>
+        <item>@string/china_air_quality_level_4_description</item>
+        <item>@string/china_air_quality_level_5_description</item>
+        <item>@string/china_air_quality_level_6_description</item>
+    </string-array>
+    <string-array name="china_air_quality_level_harmless_exposures">
+        <item>@string/china_air_quality_level_1_harmless_exposure</item>
+        <item>@string/china_air_quality_level_2_harmless_exposure</item>
+        <item>@string/china_air_quality_level_3_harmless_exposure</item>
+        <item>@string/china_air_quality_level_4_harmless_exposure</item>
+        <item>@string/china_air_quality_level_5_harmless_exposure</item>
+        <item>@string/china_air_quality_level_6_harmless_exposure</item>
+    </string-array>
+    <integer-array name="china_air_quality_level_colors">
+        <item>@color/chinaAqiLevel_1</item>
+        <item>@color/chinaAqiLevel_2</item>
+        <item>@color/chinaAqiLevel_3</item>
+        <item>@color/chinaAqiLevel_4</item>
+        <item>@color/chinaAqiLevel_5</item>
+        <item>@color/chinaAqiLevel_6</item>
+    </integer-array>
+
+    <!-- Air quality standard names -->
+    <string-array name="air_quality_standards">
+        <item>@string/air_quality_standard_plume</item>
+        <item>@string/air_quality_standard_china</item>
+    </string-array>
+    <string-array name="air_quality_standard_values">
+        <item>plume</item>
+        <item>china</item>
+    </string-array>
+
     <string-array name="pollen_polleninfo_levels">
         <item>@string/pollen_level_0</item>
         <item>@string/pollen_level_2</item>

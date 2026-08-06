@@ -129,8 +129,25 @@ enum class PollutantIndex(
     ;
 
     companion object {
-        // Plume 2023
-        val aqiThresholds = listOf(0, 20, 50, 100, 150, 250)
+        // Plume 2023 (default)
+        private val plumeAqiThresholds = listOf(0, 20, 50, 100, 150, 250)
+
+        // China HJ 633-2012
+        private val chinaAqiThresholds = listOf(0, 50, 100, 150, 200, 300)
+
+        fun getStandardAqiThresholds(context: Context): List<Int> {
+            return when (SettingsManager.getInstance(context).airQualityStandard) {
+                AirQualityStandard.CHINA -> chinaAqiThresholds
+                else -> plumeAqiThresholds
+            }
+        }
+
+        fun getStandard(context: Context): AirQualityStandard {
+            return SettingsManager.getInstance(context).airQualityStandard
+        }
+
+        // Default to Plume for backwards compatibility
+        val aqiThresholds get() = plumeAqiThresholds
         val namesArrayId = R.array.air_quality_levels
         val descriptionsArrayId = R.array.air_quality_level_descriptions
         val harmlessExposuresArrayId = R.array.air_quality_level_harmless_exposures
@@ -146,12 +163,21 @@ enum class PollutantIndex(
             return if (level >= 0) level else null
         }
 
+        fun getAqiToLevel(context: Context, aqi: Int?): Int? {
+            if (aqi == null) return null
+            val thresholds = getStandardAqiThresholds(context)
+            val level = thresholds.indexOfLast { aqi >= it }
+            return if (level >= 0) level else null
+        }
+
         @ColorInt
         fun getAqiToColor(context: Context, aqi: Int?): Int {
             if (aqi == null) return Color.TRANSPARENT
-            val level = getAqiToLevel(aqi)
+            val level = getAqiToLevel(context, aqi)
             return if (level != null) {
-                context.resources.getIntArray(colorsArrayId).getOrNull(level) ?: Color.TRANSPARENT
+                context.resources.getIntArray(
+                    getStandard(context).colorsArrayId
+                ).getOrNull(level) ?: Color.TRANSPARENT
             } else {
                 Color.TRANSPARENT
             }
@@ -159,21 +185,35 @@ enum class PollutantIndex(
 
         fun getAqiToName(context: Context, aqi: Int?): String? {
             if (aqi == null) return null
-            val level = getAqiToLevel(aqi)
-            return if (level != null) context.resources.getStringArray(namesArrayId).getOrNull(level) else null
+            val level = getAqiToLevel(context, aqi)
+            return if (level != null) {
+                context.resources.getStringArray(
+                    getStandard(context).namesArrayId
+                ).getOrNull(level)
+            } else {
+                null
+            }
         }
 
         fun getAqiToDescription(context: Context, aqi: Int?): String? {
             if (aqi == null) return null
-            val level = getAqiToLevel(aqi)
-            return if (level != null) context.resources.getStringArray(descriptionsArrayId).getOrNull(level) else null
+            val level = getAqiToLevel(context, aqi)
+            return if (level != null) {
+                context.resources.getStringArray(
+                    getStandard(context).descriptionsArrayId
+                ).getOrNull(level)
+            } else {
+                null
+            }
         }
 
         fun getAqiToHarmlessExposure(context: Context, aqi: Int?): String? {
             if (aqi == null) return null
-            val level = getAqiToLevel(aqi)
+            val level = getAqiToLevel(context, aqi)
             return if (level != null) {
-                context.resources.getStringArray(harmlessExposuresArrayId).getOrNull(level)
+                context.resources.getStringArray(
+                    getStandard(context).harmlessExposuresArrayId
+                ).getOrNull(level)
             } else {
                 null
             }

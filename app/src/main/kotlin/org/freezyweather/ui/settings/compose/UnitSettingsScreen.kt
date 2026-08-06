@@ -27,6 +27,7 @@ import org.freezyweather.R
 import org.freezyweather.common.extensions.currentLocale
 import org.freezyweather.common.extensions.plus
 import org.freezyweather.domain.settings.SettingsManager
+import org.freezyweather.domain.weather.index.AirQualityStandard
 import org.freezyweather.ui.common.widgets.Material3Scaffold
 import org.freezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.freezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
@@ -245,7 +246,6 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).pressureUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,
-                    isLast = true,
                     onValueChanged = { pressureUnitId ->
                         SettingsManager.getInstance(context).pressureUnit = if (pressureUnitId != "auto") {
                             PressureUnit.getUnit(pressureUnitId)
@@ -256,6 +256,25 @@ fun UnitSettingsScreen(
                         // Widgets and notification-widget may use units, update them
                         updateWidgetIfNecessary(context)
                         updateNotificationIfNecessary(context)
+                    }
+                )
+            }
+            listPreferenceItem(R.string.air_quality_standard_title) { id ->
+                smallSeparatorItem()
+                val valueArray = context.resources.getStringArray(R.array.air_quality_standard_values)
+                val nameArray = context.resources.getStringArray(R.array.air_quality_standards)
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
+                    selectedKey = SettingsManager.getInstance(context).airQualityStandard.id,
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    isLast = true,
+                    onValueChanged = { standardId ->
+                        SettingsManager.getInstance(context).airQualityStandard =
+                            AirQualityStandard.getInstance(standardId)
                     }
                 )
             }
