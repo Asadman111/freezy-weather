@@ -1,8 +1,3 @@
-<div align="center">
-<br />
-<img src="app/src/res_freezy/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Logo" />
-</div>
-
 <h1 align="center">Freezy Weather</h1>
 
 <br />
@@ -42,7 +37,7 @@
 
 # ⬇️ Download
 
-<a href="https://github.com/freezy-weather/freezy-weather/releases">
+<a href="https://github.com/Asadman111/freezy-weather/releases">
 <img src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png"
 alt="Get it on GitHub" align="center" height="80" /></a>
 
